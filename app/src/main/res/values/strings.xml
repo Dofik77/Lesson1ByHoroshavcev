@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">Lesson1</string>
+    <string name="app_name">AndroidApp</string>
+    <string name="contactlist_name">Имя контакта</string>
+    <string name="contactlist_number">Номер контакта</string>
+    <string name="contactlist_image">Фото профиля</string>
+    <string name="second_email">e-mail 2</string>
+    <string name="description">Информация</string>
+    <string name="email">e-mail</string>
+    <string name="second_phone_number">Номер телефона 2</string>
+    <string name="phone_number">Номер Телефона</string>
+    <string name="contact_name">Имя</string>
+    <string name="birthday">День Рождения</string>
 </resources>
