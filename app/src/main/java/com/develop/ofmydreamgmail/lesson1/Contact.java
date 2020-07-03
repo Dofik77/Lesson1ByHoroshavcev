@@ -34,10 +34,11 @@ import androidx.annotation.Nullable;
             this.data = data;
             this.image = image;
         }
-        ы
-        public String getName() { return this.name; }
 
-        public String getPhone() { return this.phone; }
+
+         public String getName() { return this.name; }
+
+         public String getPhone() { return this.phone; }
 
         @Nullable public String getPhone2() { return this.phone2; }
 
@@ -51,3 +52,4 @@ import androidx.annotation.Nullable;
 
         @Nullable public int getImage() { return this.image; }
     }
+
