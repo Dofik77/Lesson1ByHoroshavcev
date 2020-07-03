@@ -34,8 +34,7 @@ import androidx.annotation.Nullable;
             this.data = data;
             this.image = image;
         }
-
-
+        ы
         public String getName() { return this.name; }
 
         public String getPhone() { return this.phone; }

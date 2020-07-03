@@ -61,5 +61,4 @@ public class MainActivity extends AppCompatActivity implements ServiceInterface 
             mBound = false;
         }
     }
-
 }

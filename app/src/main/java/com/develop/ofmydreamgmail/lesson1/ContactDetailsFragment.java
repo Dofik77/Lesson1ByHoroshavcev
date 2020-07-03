@@ -99,5 +99,4 @@ public class ContactDetailsFragment extends Fragment {
         detailedContactDayOfBirth = null;
         detailedContactDescription = null;
     }
-
 }
