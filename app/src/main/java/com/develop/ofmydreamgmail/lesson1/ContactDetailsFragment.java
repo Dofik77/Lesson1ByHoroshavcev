@@ -41,7 +41,7 @@ public class ContactDetailsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        getActivity().setTitle("Contact Details");
+        getActivity().setTitle(R.string.contact_details);
         View view = inflater.inflate(R.layout.fragment_contactdetails, container, false);
         int i = this.getArguments().getInt("index");
         detailedContactName = view.findViewById(R.id.detailedContactName);

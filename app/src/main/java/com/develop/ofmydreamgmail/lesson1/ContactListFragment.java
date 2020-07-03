@@ -25,7 +25,7 @@ public class ContactListFragment extends ListFragment {
     @Override
     public void onStart() {
         super.onStart();
-        getActivity().setTitle("Contact List");
+        getActivity().setTitle(R.string.contact_list);
         view = getView();
         service.getContacts(callback);
     }
@@ -57,33 +57,37 @@ public class ContactListFragment extends ListFragment {
         @Override
         public void onComplete(Contact[] result) {
             final Contact[] contacts = result;
-            view.post(new Runnable() {
-                @Override
-                public void run() {
-                    if (view != null) {
-                        final ArrayAdapter<Contact> contactAdapter = new ArrayAdapter<Contact>(getActivity(), 0, contacts) {
-                            @SuppressLint("NewApi")
-                            @NonNull
-                            @Override
-                            public View getView(int i, @Nullable View convertView, @NonNull ViewGroup parent) {
-                                if (convertView == null) {
-                                    convertView = getLayoutInflater().inflate(R.layout.fragment_contactlist, null, false);
+            if (view != null) {
+                view.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (view != null) {
+                            final ArrayAdapter<Contact> contactAdapter = new ArrayAdapter<Contact>(getActivity(), 0, contacts) {
+                                @SuppressLint("NewApi")
+                                @NonNull
+                                @Override
+                                public View getView(int i, @Nullable View convertView, @NonNull ViewGroup parent) {
+                                    if (convertView == null) {
+                                        convertView = getLayoutInflater().inflate(R.layout.fragment_contactlist, null, false);
+                                    }
+                                    ImageView imageView = convertView.findViewById(R.id.contactImage);
+                                    TextView nameView = convertView.findViewById(R.id.contactName);
+                                    TextView phoneNumberView = convertView.findViewById(R.id.contactNum);
+                                    Contact currentContact = contacts[i];
+                                    nameView.setText(currentContact.getName());
+                                    phoneNumberView.setText(currentContact.getPhone());
+                                    imageView.setImageResource(currentContact.getImage());
+                                    return convertView;
                                 }
-                                ImageView imageView = convertView.findViewById(R.id.contactImage);
-                                TextView nameView = convertView.findViewById(R.id.contactName);
-                                TextView phoneNumberView = convertView.findViewById(R.id.contactNum);
-                                Contact currentContact = contacts[i];
-                                nameView.setText(currentContact.getName());
-                                phoneNumberView.setText(currentContact.getPhone());
-                                imageView.setImageResource(currentContact.getImage());
-                                return convertView;
-                            }
-                        };
-                        setListAdapter(contactAdapter);
+                            };
+                            setListAdapter(contactAdapter);
+                        }
                     }
-                }
-            });
+                });
+            }
         }
     };
 }
+
+
 
