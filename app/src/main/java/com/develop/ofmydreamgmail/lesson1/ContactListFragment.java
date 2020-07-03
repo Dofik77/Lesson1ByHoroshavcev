@@ -17,6 +17,7 @@ public class ContactListFragment extends ListFragment {
 
     private ContactsService service;
     private View view;
+    private ResultListener callback;
 
     public interface ResultListener {
         void onComplete(Contact[] contacts);
@@ -39,7 +40,7 @@ public class ContactListFragment extends ListFragment {
     }
 
     @Override
-    public void onListItemClick (@NonNull ListView listView, @Nullable View view, int i, long id) {
+    public void onListItemClick(@NonNull ListView listView, @Nullable View view, int i, long id) {
         ContactDetailsFragment detailsFragment = ContactDetailsFragment.newInstance(i);
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.addToBackStack(null);
@@ -54,46 +55,44 @@ public class ContactListFragment extends ListFragment {
     }
 
     @Override
-    public void onResume () {
+    public void onResume() {
         super.onResume();
     }
 
-
-    private ResultListener callback = new ResultListener() {
-        @Override
-        public void onComplete(Contact[] result) {
-            final Contact[] contacts = result;
-            if (view != null){
-                view.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        final ArrayAdapter<Contact> contactAdapter = new ArrayAdapter<Contact>(getActivity(), 0, contacts){
-                            @SuppressLint("NewApi")
-                            @NonNull
+    private void run() {
+        if (view != null) {
+           ResultListener callback = new ResultListener() {
+                @Override
+                public void onComplete(Contact[] result) {
+                    final Contact[] contacts = result;
+                    if (view != null) {
+                        view.post(new Runnable() {
                             @Override
-                            public View getView(int i, @Nullable View convertView, @NonNull ViewGroup parent) {
-                                if (parent != null) {
-                                    if (convertView == null) {
-                                        convertView = getLayoutInflater().inflate(R.layout.fragment_contactlist, null, false);
+                            public void run() {
+                                final ArrayAdapter<Contact> contactAdapter = new ArrayAdapter<Contact>(getActivity(), 0, contacts) {
+                                    @SuppressLint("NewApi")
+                                    @NonNull
+                                    @Override
+                                    public View getView(int i, @Nullable View convertView, @NonNull ViewGroup parent) {
+                                        if (convertView == null) {
+                                            convertView = getLayoutInflater().inflate(R.layout.fragment_contactlist, null, false);
+                                        }
+                                        ImageView imageView = convertView.findViewById(R.id.contactImage);
+                                        TextView nameView = convertView.findViewById(R.id.contactName);
+                                        TextView phoneNumberView = convertView.findViewById(R.id.contactNum);
+                                        Contact currentContact = contacts[i];
+                                        nameView.setText(currentContact.getName());
+                                        phoneNumberView.setText(currentContact.getPhone());
+                                        imageView.setImageResource(currentContact.getImage());
+                                        return convertView;
                                     }
-                                    ImageView imageView = convertView.findViewById(R.id.contactImage);
-                                    TextView nameView = convertView.findViewById(R.id.contactName);
-                                    TextView phoneNumberView = convertView.findViewById(R.id.contactNum);
-                                    Contact currentContact = contacts[i];
-                                    nameView.setText(currentContact.getName());
-                                    phoneNumberView.setText(currentContact.getPhone());
-                                    imageView.setImageResource(currentContact.getImage());
-                                }
-                                return convertView;
+                                };
+                                setListAdapter(contactAdapter);
                             }
-                        };
-                        setListAdapter(contactAdapter);
+                        });
                     }
-                });
-            }
+                }
+            };
         }
-    };
-
-
-
+    }
 }
