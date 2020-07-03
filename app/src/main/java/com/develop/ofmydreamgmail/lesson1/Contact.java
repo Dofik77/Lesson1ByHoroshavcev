@@ -3,14 +3,15 @@ package com.develop.ofmydreamgmail.lesson1;
 import androidx.annotation.Nullable;
 
     public class Contact {
+
         final private String name;
         final private String phone;
-        final private String phone2;
-        final private String email;
-        final private String email2;
-        final private String birthday;
-        final private String data;
-        final private int image;
+        @Nullable final private String phone2;
+        @Nullable final private String email;
+        @Nullable final private String email2;
+        @Nullable final private String birthday;
+        @Nullable final private String data;
+        @Nullable final private int image;
 
         static final Contact[] contacts = {
                 new Contact("Stanislav Khorochavcev", "+89820987121", null, "khorochavcev@mail.ru", null, "10.10.03", null, R.mipmap.ic_launcher),
@@ -35,20 +36,20 @@ import androidx.annotation.Nullable;
         }
 
 
-        public String getName() { return this.name; }
+        @Nullable public String getName() { return this.name; }
 
-        public String getPhone() { return this.phone; }
+        @Nullable public String getPhone() { return this.phone; }
 
-        public String getPhone2() { return this.phone2; }
+        @Nullable public String getPhone2() { return this.phone2; }
 
-        public String getEmail() { return this.email; }
+        @Nullable public String getEmail() { return this.email; }
 
-        public String getEmail2() { return this.email2; }
+        @Nullable public String getEmail2() { return this.email2; }
 
-        public String getBirthday() { return this.birthday; }
+        @Nullable public String getBirthday() { return this.birthday; }
 
-        public String getData() { return this.data; }
+        @Nullable public String getData() { return this.data; }
 
-        public int getImage() { return this.image; }
+        @Nullable public int getImage() { return this.image; }
     }
 

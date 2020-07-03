@@ -7,12 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 
 public class ContactDetailsFragment extends Fragment {
+
     private ContactsService service;
     private TextView detailedContactName;
     private TextView detailedContactPhone;
@@ -29,6 +29,7 @@ public class ContactDetailsFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
     @Override
     public void onAttach(@NonNull Context ctx) {
         super.onAttach(ctx);
@@ -36,11 +37,12 @@ public class ContactDetailsFragment extends Fragment {
             this.service = ((ServiceInterface) ctx).getService();
         }
     }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getActivity().setTitle("Contact Details");
-        View view = inflater.inflate(R.layout.fragment_detailslist, container, false);
+        View view = inflater.inflate(R.layout.fragment_contactdetails, container, false);
         int i = this.getArguments().getInt("index");
         detailedContactName = view.findViewById(R.id.detailedContactName);
         detailedContactPhone = view.findViewById(R.id.detailedContactPhoneNum);

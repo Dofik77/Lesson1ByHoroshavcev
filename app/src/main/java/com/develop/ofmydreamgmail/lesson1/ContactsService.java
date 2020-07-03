@@ -1,11 +1,11 @@
 package com.develop.ofmydreamgmail.lesson1;
+
 import android.os.Binder;
 import android.os.IBinder;
 import android.app.Service;
 import android.content.Intent;
-
-
 import java.lang.ref.WeakReference;
+
 public class ContactsService extends Service {
 
     private final IBinder contactsBinder = new ContactsBinder();

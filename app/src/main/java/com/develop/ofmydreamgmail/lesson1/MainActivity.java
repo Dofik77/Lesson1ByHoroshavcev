@@ -12,6 +12,7 @@ import android.os.IBinder;
 
 
 public class MainActivity extends AppCompatActivity implements ServiceInterface {
+
     private ContactsService contactsService;
     private ServiceConnection conn;
     private boolean previousState;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements ServiceInterface 
                 }
 
             }
+
             @Override
             public void onServiceDisconnected(ComponentName name) {
                 mBound = false;
@@ -44,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements ServiceInterface 
             }
         };
         bindService(intent, conn, Context.BIND_AUTO_CREATE);
-
     }
 
     @Override

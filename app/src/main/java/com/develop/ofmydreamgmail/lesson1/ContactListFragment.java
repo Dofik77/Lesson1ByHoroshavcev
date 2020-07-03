@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 public class ContactListFragment extends ListFragment {
+
     private ContactsService service;
     private View view;
 
@@ -55,7 +56,6 @@ public class ContactListFragment extends ListFragment {
     @Override
     public void onResume () {
         super.onResume();
-        getActivity().setTitle("Contact List");
     }
 
 
@@ -72,16 +72,18 @@ public class ContactListFragment extends ListFragment {
                             @NonNull
                             @Override
                             public View getView(int i, @Nullable View convertView, @NonNull ViewGroup parent) {
-                                if (convertView == null) {
-                                    convertView = getLayoutInflater().inflate(R.layout.fragment_contactlist, null, false);
+                                if (parent != null) {
+                                    if (convertView == null) {
+                                        convertView = getLayoutInflater().inflate(R.layout.fragment_contactlist, null, false);
+                                    }
+                                    ImageView imageView = convertView.findViewById(R.id.contactImage);
+                                    TextView nameView = convertView.findViewById(R.id.contactName);
+                                    TextView phoneNumberView = convertView.findViewById(R.id.contactNum);
+                                    Contact currentContact = contacts[i];
+                                    nameView.setText(currentContact.getName());
+                                    phoneNumberView.setText(currentContact.getPhone());
+                                    imageView.setImageResource(currentContact.getImage());
                                 }
-                                ImageView imageView = convertView.findViewById(R.id.contactImage);
-                                TextView nameView = convertView.findViewById(R.id.contactName);
-                                TextView phoneNumberView = convertView.findViewById(R.id.contactNum);
-                                Contact currentContact = contacts[i];
-                                nameView.setText(currentContact.getName());
-                                phoneNumberView.setText(currentContact.getPhone());
-                                imageView.setImageResource(currentContact.getImage());
                                 return convertView;
                             }
                         };
